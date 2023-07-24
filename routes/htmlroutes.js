@@ -1,15 +1,16 @@
-const rout = require('express').Router();
+const express = require('express');
 const path = require('path');
 
-// # HTML routes taken from db/server.js
+const router = express.Router();
 
-// # Return the 'notes.html' file
-// GET '/notes':
-//     Respond with 'notes.html' file
+// Serve the 'notes.html' file
+router.get('/notes', (req, res) => {
+  res.sendFile(path.join(__dirname, 'notes.html'));
+});
 
-// # Return the 'index.html' file for any other routes
-// GET '*':
-//     Respond with 'index.html' file
+// Serve the 'index.html' file for any other routes
+router.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
 
-// # Start the server to listen on the defined PORT
-// app.listen(PORT, callback for server start)
+module.exports = router;
